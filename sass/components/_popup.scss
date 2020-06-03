@@ -1,0 +1,141 @@
+.popup  {
+  background-color: rgba($color-black, .8);
+  height: 100vh;
+  width: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s; 
+
+  &__content { 
+    @include absCenter; 
+    background-color: $color-white;
+    border-radius: 3px;
+    box-shadow: 0 2rem 4rem   rgba($color-black, .2);
+    display: table;
+    overflow: hidden;
+    width: 75%;
+    opacity: 0;
+    transform: translate(-50%, -50%)  scale(.25);
+    transition: all .5s .2s;
+
+    @include respond(port-tab) {
+        display: block;
+    }
+  }
+
+  &__left { 
+    display: table-cell;
+    width: 33.333333%;
+
+    @include respond(port-tab) {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+   
+  }
+
+  &__right { 
+    display: table-cell;
+    width: 66.6666667%;
+    vertical-align: middle;
+    padding: 5rem 3rem;
+
+    @include respond (land-tab) {
+    padding: 2rem 2rem 0;
+    }
+    @include respond (port-tab) {
+      display: block;
+      width: 100%;
+      padding: 1rem 2rem;
+    }    
+    
+  }
+
+  &__img { 
+    display: block;
+    width: 100%;
+
+    @include respond(port-tab) {
+      display: inline-block;
+      width: 40%;
+      height: 16rem;
+      margin-top: 1rem;
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+
+    @include respond(phone) {
+      display: block;
+      width: 55%;
+      height: auto;
+      margin: 1rem auto 0 !important; 
+
+    }
+  }
+
+  &__text { 
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+    -moz-column-count: 2;
+    column-count: 2;
+    -moz-column-gap: 4rem;
+    column-gap: 4rem;
+    -moz-column-rule: 1px solid $color-grey-light-2;
+    column-rule: 1px solid $color-grey-light-2;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
+    @include respond (land-tab) {
+      column-count: auto;
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    @include respond(port-tab) {
+      margin-bottom: .5rem;
+      margin-top: -2rem;
+     }
+  }
+
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:target &__content {
+    opacity: 1;
+    transform: translate(-50%, -50%)  scale(1);
+  }
+
+  &__close {
+    &:link,
+    &visited {
+      color: $color-grey-dark;
+      display: inline-block;
+      font-size: 3rem;
+      right: 2.5rem;
+      position: absolute;
+      text-decoration: none;      
+      top: 2.5rem;
+      transition: all .2s;
+      line-height: 1;
+
+      @include  respond(phone) {
+        right: 1.5rem;
+        top: 1.5rem;
+      }
+    }
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
